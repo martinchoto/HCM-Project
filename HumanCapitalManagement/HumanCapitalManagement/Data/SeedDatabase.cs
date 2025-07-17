@@ -51,8 +51,11 @@ namespace HumanCapitalManagement.Data
 				};
 				user.PasswordHash = passwordHasher.HashPassword(user, "admin");
 				users.Add(user);
+				//Check which department 
 				int departmentId = (i % 6) + 1;
+				// Check if its an HR
 				bool isHR = departmentId == 1;
+				//Check if its manager first 6 ids are managers in the seeding
 				bool isManager = i <= 6;
 				var random = new Random();
 				Employee employee = new Employee
