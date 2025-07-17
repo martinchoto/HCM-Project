@@ -28,10 +28,24 @@ namespace HumanCapitalManagement.Data
 				entity.Ignore(u => u.PhoneNumberConfirmed);
 			});
 
-			SeedDatabase.SeedRoles(modelBuilder);
-			SeedDatabase.SeedDepartments(modelBuilder);
-			SeedDatabase.SeedUsersAndEmployees(modelBuilder);
+			modelBuilder.Entity<Employee>()
+			.HasOne(e => e.User)
+			.WithOne()
+			.HasForeignKey<Employee>(e => e.UserId)
+			.OnDelete(DeleteBehavior.Cascade);
+
+			modelBuilder.Entity<Employee>()
+		   .HasOne(e => e.Department)
+		   .WithMany(d => d.Employees)
+		   .HasForeignKey(e => e.DepartmentId)
+		   .OnDelete(DeleteBehavior.Restrict);
+
+			// Uncomment if you want to seed 
+			//SeedDatabase.SeedRoles(modelBuilder); 
+			//SeedDatabase.SeedDepartments(modelBuilder);
+			//SeedDatabase.SeedUsersAndEmployees(modelBuilder);
 		}
 	}
+
 }
 

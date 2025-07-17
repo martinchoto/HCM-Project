@@ -21,6 +21,7 @@ namespace HumanCapitalManagement.Data.Models
 		public int DepartmentId { get; set; }
 		public Department Department { get; set; } = null!;
 		[ForeignKey(nameof(User))]
+		[Required]
 		public string UserId { get; set; } = null!;
 		public ApplicationUser User { get; set; } = null!;
 	}

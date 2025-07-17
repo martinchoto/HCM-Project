@@ -28,6 +28,9 @@ namespace HumanCapitalManagement.Data
 		}
 		internal static void SeedUsersAndEmployees(ModelBuilder builder)
 		{
+			var employees = new List<Employee>();
+			var users = new List<ApplicationUser>();
+			var userRoles = new List<IdentityUserRole<string>>();
 			for (int i = 1; i <= 50; i++)
 			{
 				var userId = Guid.NewGuid().ToString();
@@ -47,34 +50,41 @@ namespace HumanCapitalManagement.Data
 					ConcurrencyStamp = Guid.NewGuid().ToString(),
 				};
 				user.PasswordHash = passwordHasher.HashPassword(user, "admin");
-
+				users.Add(user);
 				int departmentId = (i % 6) + 1;
-				builder.Entity<ApplicationUser>().HasData(user);
+				bool isHR = departmentId == 1;
+				bool isManager = i <= 6;
+				var random = new Random();
 				Employee employee = new Employee
 				{
 					Id = i,
 					FirstName = $"John",
 					LastName = $"Doe",
 					CompanyEmail = companyEmail,
-					JobTitle = GetJobTitle(departmentId, i <= 6),
-					Salary = GetSalaryByDepartment(departmentId, i <= 6),
+					JobTitle = GetJobTitle(departmentId, isManager),
+					Salary = GetSalaryByDepartment(departmentId, isManager),
 					DepartmentId = i % 6 + 1,
 					UserId = user.Id,
 				};
 				builder.Entity<Employee>().HasData(employee);
+				string roleId = isHR ? "1" : (isManager ? "2" : "3");
+				var userRole = new IdentityUserRole<string> { UserId = user.Id, RoleId = roleId };
+				userRoles.Add(userRole);
 			}
+			builder.Entity<ApplicationUser>().HasData(users);
+			builder.Entity<IdentityUserRole<string>>().HasData(userRoles);
 		}
 		private static decimal GetSalaryByDepartment(int deptId, bool isManager)
 		{
 			var random = new Random();
 			int baseSalary = deptId switch
 			{
-				1 => random.Next(1500, 1800),   // HR
-				2 => random.Next(2000, 2200),   // Finance
+				1 => random.Next(1500, 1800),  // HR
+				2 => random.Next(2000, 2200),  // Finance
 				3 => random.Next(4000, 5000),  // IT
-				4 => random.Next(2000, 2200),   // Marketing
-				5 => random.Next(2000, 5000),  // Sales (wide range)
-				6 => random.Next(2500, 3000),   // Operations
+				4 => random.Next(2000, 2200),  // Marketing
+				5 => random.Next(2000, 5000),  // Sales
+				6 => random.Next(2500, 3000),  // Operations
 				_ => random.Next(1500, 2000)
 			};
 
