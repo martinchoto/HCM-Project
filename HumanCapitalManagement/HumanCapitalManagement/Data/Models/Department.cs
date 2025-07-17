@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace HumanCapitalManagement.Data
+namespace HumanCapitalManagement.Data.Models
 {
 	public class Department
 	{

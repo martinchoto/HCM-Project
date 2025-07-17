@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.Contracts;
 
-namespace HumanCapitalManagement.Data
+namespace HumanCapitalManagement.Data.Models
 {
 	public class Employee
 	{
@@ -13,12 +13,15 @@ namespace HumanCapitalManagement.Data
 		[Required]
 		public string LastName { get; set; } = null!;
 		[Required]
-		public string Email { get; set; } = null!;
+		public string CompanyEmail { get; set; } = null!;
 		[Required]
 		public string JobTitle { get; set; } = null!;
 		public decimal Salary { get; set; }
 		[ForeignKey(nameof(Department))]
 		public int DepartmentId { get; set; }
 		public Department Department { get; set; } = null!;
+		[ForeignKey(nameof(User))]
+		public string UserId { get; set; } = null!;
+		public ApplicationUser User { get; set; } = null!;
 	}
 }
