@@ -1,3 +1,5 @@
+using HumanCapitalManagement.Shared;
+
 namespace HumanCapitalManagement.Client
 {
     // Add properties to this class and update the server and client AuthenticationStateProviders

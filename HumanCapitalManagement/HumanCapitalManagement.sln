@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36310.24 d17.14
+VisualStudioVersion = 17.14.36310.24
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HumanCapitalManagement", "HumanCapitalManagement\HumanCapitalManagement.csproj", "{107FE54D-5978-4E0F-A6AA-09A35C6A0942}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HumanCapitalManagement.Client", "HumanCapitalManagement.Client\HumanCapitalManagement.Client.csproj", "{FB05167D-7770-40E7-9B77-9A685F99B95D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HumanCapitalManagement.Shared", "HumanCapitalManagement.Shared\HumanCapitalManagement.Shared.csproj", "{51777385-14E7-4D38-A3CF-128D02D004FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{FB05167D-7770-40E7-9B77-9A685F99B95D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB05167D-7770-40E7-9B77-9A685F99B95D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB05167D-7770-40E7-9B77-9A685F99B95D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51777385-14E7-4D38-A3CF-128D02D004FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51777385-14E7-4D38-A3CF-128D02D004FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51777385-14E7-4D38-A3CF-128D02D004FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51777385-14E7-4D38-A3CF-128D02D004FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
